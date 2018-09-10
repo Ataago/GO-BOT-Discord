@@ -11,7 +11,7 @@ import os
 
 extensions = []
 
-currentdir = os.getcwd() + '\commands'
+currentdir = os.path.dirname(os.path.realpath(__file__))  + '\commands'
 for dirpath, dirnames, filenames in os.walk(currentdir):
     if dirpath == currentdir:
         for file in filenames:
@@ -19,7 +19,7 @@ for dirpath, dirnames, filenames in os.walk(currentdir):
 print('Modules Detected: ',extensions)
 
 GoBot = commands.Bot(command_prefix = 'go ')
-#GoBot.remove_command('help')
+GoBot.remove_command('help')
 
 #Change status
 status = ['Under Development', 'coming Soon!', 'type "go help"']
@@ -39,7 +39,7 @@ async def on_ready():
 
 @GoBot.event
 async def on_message(message):
-    print('{} in {}-{}: {}'.format(message.author,message.channel,message.server, message.content))
+    print('{} in {}-{}:\t{}'.format(message.author,message.channel,message.server, message.content))
     await GoBot.process_commands(message)
 
 if __name__ == '__main__':
