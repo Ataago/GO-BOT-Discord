@@ -52,7 +52,8 @@ if __name__ == '__main__':
             print(error)
 
     try:
-        TOKEN = input("\nEnter GO TOKEN: ")
+        #TOKEN = input("\nEnter GO TOKEN: ")
+        TOKEN = 'NDg3NjMwNjU3MDI4MzU4MTQ1.DneRMQ.ewrkApicUfAme6FK_N7sRL-3CVQ'
         GoBot.loop.create_task(change_status()) #change status
         GoBot.run(TOKEN)    #run the bot
         
