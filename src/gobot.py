@@ -9,10 +9,10 @@ import asyncio
 from itertools import cycle
 import os
 
-os.chdir(r'E:\Git\GO-BOT-Discord\commands')
+os.chdir(r'E:\Git\GO-BOT-Discord\src\commands')
 extensions = []
-for dirpath, dirnames, filenames in os.walk('E:\Git\GO-BOT-Discord\commands'):
-    if dirpath == 'E:\Git\GO-BOT-Discord\commands':
+for dirpath, dirnames, filenames in os.walk('E:\Git\GO-BOT-Discord\src\commands'):
+    if dirpath == 'E:\Git\GO-BOT-Discord\src\commands':
         for file in filenames:
             extensions.append(os.path.splitext(file)[0])   
 print('Modules Detected: ',extensions)
@@ -52,8 +52,7 @@ if __name__ == '__main__':
             print(error)
 
     try:
-        #TOKEN = input("\nEnter GO TOKEN: ")
-        TOKEN = 'NDg3NjMwNjU3MDI4MzU4MTQ1.DneRMQ.ewrkApicUfAme6FK_N7sRL-3CVQ'
+        TOKEN = input("\nEnter GO TOKEN: ")
         GoBot.loop.create_task(change_status()) #change status
         GoBot.run(TOKEN)    #run the bot
         
