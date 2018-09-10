@@ -1,3 +1,6 @@
+# @author Ataago 
+# @license GPL-3.0
+
 #yet to be designed
 
 import discord

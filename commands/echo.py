@@ -1,3 +1,6 @@
+# @author Ataago 
+# @license GPL-3.0
+
 #fix exception handling
 
 import discord
