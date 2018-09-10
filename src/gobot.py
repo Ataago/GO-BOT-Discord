@@ -9,10 +9,11 @@ import asyncio
 from itertools import cycle
 import os
 
-os.chdir(r'E:\Git\GO-BOT-Discord\src\commands')
 extensions = []
-for dirpath, dirnames, filenames in os.walk('E:\Git\GO-BOT-Discord\src\commands'):
-    if dirpath == 'E:\Git\GO-BOT-Discord\src\commands':
+
+currentdir = os.getcwd() + '\commands'
+for dirpath, dirnames, filenames in os.walk(currentdir):
+    if dirpath == currentdir:
         for file in filenames:
             extensions.append(os.path.splitext(file)[0])   
 print('Modules Detected: ',extensions)
@@ -45,7 +46,6 @@ if __name__ == '__main__':
     for extension in extensions:
         try:
             GoBot.load_extension(extension)
-            #print('Loaded: ',extension)
         except Exception as error:
             GoBot.unload_extension(extension)
             print('\nCould not load: ',extension)
