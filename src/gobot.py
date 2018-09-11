@@ -9,7 +9,13 @@ import asyncio
 from itertools import cycle
 import os
 
+
+TOKEN = input("\nEnter GO TOKEN: ")
+
+gotrigger = 'go '
 extensions = []
+botcommands = ['allo', 'echo', 'clear', 'play', 'autorole', 'leave', 'help', 'pause','resume', 'join', 'stop']
+
 
 currentdir = os.path.dirname(os.path.realpath(__file__))  + '\commands'
 for dirpath, dirnames, filenames in os.walk(currentdir):
@@ -18,7 +24,7 @@ for dirpath, dirnames, filenames in os.walk(currentdir):
             extensions.append(os.path.splitext(file)[0])   
 print('Modules Detected: ',extensions)
 
-GoBot = commands.Bot(command_prefix = 'go ')
+GoBot = commands.Bot(command_prefix = gotrigger)
 GoBot.remove_command('help')
 
 #Change status
@@ -35,11 +41,18 @@ async def change_status():
 #on_ready
 @GoBot.event
 async def on_ready():
-    print('\nGO BOT is Ready to GO!\n')
+    await GoBot.change_presence(game = discord.Game(name = 'Beta Version'))  #Single status
+    print('\nGO BOT is Ready to GO!\n\nRunning on:')
+    [(lambda server: print(" > %s (%s)"%(server.name, server.id))) (server) for server in GoBot.servers]
 
 @GoBot.event
 async def on_message(message):
     print('{} in {}-{}:\t{}'.format(message.author,message.channel,message.server, message.content))
+    prefix = message.content[0:3]
+    invoke = message.content[3:].split(" ")[0]
+    if invoke not in botcommands and prefix == gotrigger :
+        await GoBot.send_message(message.channel,  embed = discord.Embed(color = discord.Color.red(), description = ("'%s' is not a GO command! \n\nEnter 'go help' " % invoke)))
+        return
     await GoBot.process_commands(message)
 
 if __name__ == '__main__':
@@ -52,10 +65,10 @@ if __name__ == '__main__':
             print(error)
 
     try:
-        TOKEN = input("\nEnter GO TOKEN: ")
-        GoBot.loop.create_task(change_status()) #change status
+        print('\nIntializing Go...\n')
+        #GoBot.loop.create_task(change_status()) #change status with status list
         GoBot.run(TOKEN)    #run the bot
-        
+
     except discord.errors.LoginFailure as e:
         print(e)
-        input()
+        input('Hit Enter to exit.')

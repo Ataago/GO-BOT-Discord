@@ -1,6 +1,8 @@
 # @author Ataago 
 # @license GPL-3.0
 
+#make the currentdir as class variables
+
 import discord
 from discord.ext import commands
 import os
@@ -14,7 +16,7 @@ class Admin():
         currentdir = os.path.dirname(os.path.realpath(__file__)) 
         currentdir = os.path.dirname(currentdir)
         currentdir = os.path.dirname(currentdir)
-        currentdir += "\\data"
+        currentdir += "\\data\\userExp"
 
         file_name = server_name + ".json"
         creatfile = currentdir + "\\" + file_name
@@ -39,8 +41,8 @@ class Admin():
     async def on_member_join(self, member):
         currentdir = os.path.dirname(os.path.realpath(__file__)) 
         currentdir = os.path.dirname(currentdir)
-        currentdir = os.path.dirname(currentdir)
-        currentdir += "\\data"
+        currentdir = os.path.dirname(currentdir)  #GO-BOT-DISCORD
+        currentdir += "\\data\\userExp"
         os.chdir(currentdir)
 
         server_name = member.server.name
@@ -60,9 +62,13 @@ class Admin():
         currentdir = os.path.dirname(os.path.realpath(__file__)) 
         currentdir = os.path.dirname(currentdir)
         currentdir = os.path.dirname(currentdir)
-        currentdir += "\\data"
+        currentdir += "\\data\\userExp"
         os.chdir(currentdir)
+        
+        if message.author.id == '487630657028358145': #GO BOT messages ignored
+            return
 
+        print('This is not printed', message.author.id)                         #remove this line
         server_name = message.server.name
         file_name = await self.check_server(server_name)
 

@@ -17,7 +17,7 @@ class YT():
         try:
             try:
                 if voice_client.is_connected():
-                    await self.GoBot.say('Aldready in {} :loud_sound:  '.format(voice_client.channel))
+                    await self.GoBot.say('Already in {} :loud_sound:  '.format(voice_client.channel))
                     return
             except: 
                 pass

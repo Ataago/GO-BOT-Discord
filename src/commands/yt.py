@@ -11,6 +11,7 @@ class YT():
     players = {}
     queues = {}
 
+
     @commands.command(pass_context = True)
     async def next(self, ctx):
         serverID = ctx.message.server.id
@@ -30,7 +31,7 @@ class YT():
             YT.players[id] = player
             player.start()
             print('this is from queue',player.title)
-            #await self.GoBot.say('playing in queue')
+            #yield self.GoBot.say('playing in queue')
             #self.GoBot.send_message('Playing {}'.format(player.title))
             #await self.GoBot.say('Duration: {}  | :thumbsup:: {} | :thumbsup:: {}'.format(player.duration, player.likes, player.dislikes)) 
 
@@ -55,13 +56,30 @@ class YT():
         YT.players[server.id] = player
         player.start()
         await self.GoBot.delete_message(ctx.message)
-        await self.GoBot.say('Playing **{}** by **{}**'.format(player.title, player.uploader))
-        await self.GoBot.say('Duration: **{}**:**{}**:**{}**  | :thumbsup:: **{}** | :thumbsdown:: **{}**'.format(int((player.duration)/3600), int(((player.duration)/60)%60), (player.duration)%60, player.likes, player.dislikes)) 
-        await self.GoBot.say('as requested by **{}**'.format(ctx.message.author.name))
+        secs =  (player.duration)%60
+        mins = int(((player.duration)/60)%60)
+        hrs =  int((player.duration)/3600)
+        embed = discord.Embed(
+                color = discord.Color.red(), 
+                title = "Playing " + player.title ,
+                description = 'by **' + player.uploader + "**       Duration: "+ str(hrs) + ':' + str(mins) + ':' + str(secs) + "\n\n Requested by: **" + ctx.message.author.name + "**"
+        )
+        #embed.add_field(name = 'Duration: ', value = int((player.duration)/3600) + int(((player.duration)/60)%60) + (player.duration)%60, inline=True)
+       # embed.add_field(name = ':thumbsup:', value = player.like , inline=True)
+        #embed.add_field(name = ':thumbsdown:', value = player.dislike , inline=True)
+       # embed.set_footer(text = 'as requested by **' + ctx.message.author.name + '**')
+        await self.GoBot.say(embed = embed)
+        #await self.GoBot.say('Playing **{}** by **{}**'.format(player.title, player.uploader))
+        #await self.GoBot.say('Duration: **{}**:**{}**:**{}**  | :thumbsup:: **{}** | :thumbsdown:: **{}**'.format(int((player.duration)/3600), int(((player.duration)/60)%60), (player.duration)%60, player.likes, player.dislikes)) 
+        #await self.GoBot.say('as requested by **{}**'.format(ctx.message.author.name))
         
 
     @commands.command(pass_context=True)
-    async def queue(self, ctx, url):
+    async def queue(self, ctx, url = 'check'):
+        if url == 'check':
+            await self.GoBot.say("Current Queue is:")
+            await self.GoBot.say(self.queues)
+            return
         server = ctx.message.server
         voice_client = self.GoBot.voice_client_in(server)
         player = await voice_client.create_ytdl_player(url, after=lambda: self.check_queue(server.id))
