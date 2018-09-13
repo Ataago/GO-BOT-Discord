@@ -51,8 +51,8 @@ class YT():
         except:
             await self.GoBot.join_voice_channel(channel)
             voice_client = self.GoBot.voice_client_in(server)
-    
-        player = await voice_client.create_ytdl_player(url, after=lambda: self.check_queue(server.id))
+        
+        player = await voice_client.create_ytdl_player(url, after = lambda: self.check_queue(server.id))
         YT.players[server.id] = player
         player.start()
         await self.GoBot.delete_message(ctx.message)
@@ -82,7 +82,7 @@ class YT():
             return
         server = ctx.message.server
         voice_client = self.GoBot.voice_client_in(server)
-        player = await voice_client.create_ytdl_player(url, after=lambda: self.check_queue(server.id))
+        player = await voice_client.create_ytdl_player(url, after = lambda: self.check_queue(server.id))
 
         if server.id in YT.queues:
             YT.queues[server.id].append(player)

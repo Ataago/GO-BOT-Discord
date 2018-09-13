@@ -8,13 +8,14 @@ from discord.ext import commands
 import asyncio
 from itertools import cycle
 import os
+import key
 
 
-TOKEN = input("\nEnter GO TOKEN: ")
+#TOKEN = input("\nEnter GO TOKEN: ")
 
 gotrigger = 'go '
 extensions = []
-botcommands = ['allo', 'echo', 'clear', 'play', 'autorole', 'leave', 'help', 'pause','resume', 'join', 'stop']
+botcommands = ['allo', 'echo', 'clear', 'play', 'autorole', 'leave', 'help', 'pause','resume', 'join', 'stop', 'gn', 'about', 'queue', 'next', 'load', 'unload', 'say']
 
 
 currentdir = os.path.dirname(os.path.realpath(__file__))  + '\commands'
@@ -65,7 +66,9 @@ if __name__ == '__main__':
             print(error)
 
     try:
+        TOKEN = key.TOKEN
         print('\nIntializing Go...\n')
+
         #GoBot.loop.create_task(change_status()) #change status with status list
         GoBot.run(TOKEN)    #run the bot
 
