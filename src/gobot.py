@@ -46,6 +46,12 @@ async def on_ready():
     print('\nGO BOT is Ready to GO!\n\nRunning on:')
     [(lambda server: print(" > %s (%s)"%(server.name, server.id))) (server) for server in GoBot.servers]
 
+@GoBot.command
+async def logout():
+    await GoBot.logout()
+    print("Logout")
+    input("hit enter to exit...")
+
 @GoBot.event
 async def on_message(message):
     print('{} in {}-{}:\t{}'.format(message.author,message.channel,message.server, message.content))
