@@ -3,19 +3,22 @@
 
 import discord
 from discord.ext import commands
+from goInfo import Ataago
 
 class Admin():
     def __init__(self, GoBot):
         self.GoBot = GoBot
     
-    @commands.command()
-    async def load(self, extension):
-        try:
-            self.GoBot.load_extension(extension)
-            print('Loaded {}'.format(extension))
+    @commands.command(pass_context = True)
+    async def load(self, ctx, extension):
+        if ctx.message.author.id == Ataago.ID:
+            try:
+                self.GoBot.load_extension(extension)
+                print('Loaded {}'.format(extension))
+                await self.GoBot.send_message(ctx.message.author,'Loaded: %s'% extension )
 
-        except Exception as error:
-            print(error)
+            except Exception as error:
+                print(error)
 
 
 def setup(GoBot):

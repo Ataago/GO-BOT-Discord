@@ -68,7 +68,7 @@ class Admin():
         if message.author.id == '487630657028358145': #GO BOT messages ignored
             return
 
-        print('This is not printed', message.author.id)                         #remove this line
+        #print('This is not printed', message.author.id)                         #remove this line
         server_name = message.server.name
         file_name = await self.check_server(server_name)
 

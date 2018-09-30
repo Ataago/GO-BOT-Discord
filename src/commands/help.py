@@ -29,9 +29,6 @@ class Info():
         embed.add_field(name = 'go clear <integer>', value = 'Deletes previous messages', inline=True)
         embed.add_field(name = 'go join', value = 'Joins your Voice Channel', inline=True)
         embed.add_field(name = 'go leave', value = 'Leaves your Voice Channel', inline=True)
-    
-    
-
         await self.GoBot.send_message(author,embed=embed)
         await self.GoBot.say('I have sent you a Personal Message!')
         
