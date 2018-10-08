@@ -106,5 +106,5 @@ venv.bak/
 #my ignore files
 key.py
 git_pull.bat
-/data
+data/
 
