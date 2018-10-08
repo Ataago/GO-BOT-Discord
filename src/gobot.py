@@ -48,7 +48,7 @@ async def change_status():
 @GoBot.event
 async def on_ready():
     owner = await GoBot.get_user_info(Ataago.ID)
-    await GoBot.change_presence(game = discord.Game(name = 'Beta Version'))  #Single status
+    await GoBot.change_presence(game = discord.Game(name = 'Beta Version 3.1'))  #Single status
     print('\nGO BOT is Ready to GO!\n\nRunning on:')
     print('________________________________________________________________________________________________\n')
     [(lambda server: print(" > %s (%s)"%(server.name, server.id))) (server) for server in GoBot.servers]
