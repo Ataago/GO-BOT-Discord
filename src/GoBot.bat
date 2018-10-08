@@ -1,1 +1,0 @@
-python E:\Git\GO-BOT-Discord\src\gobot.py

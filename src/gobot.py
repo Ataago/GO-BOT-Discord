@@ -20,7 +20,7 @@ Time_of_disconnection = CurTime
 
 gotrigger = 'go '
 extensions = []
-botcommands = ['allo', 'echo', 'clear', 'play', 'autorole', 'leave', 'help', 'pause','resume', 'join', 'stop', 'gn', 'about', 'queue', 'next', 'load', 'unload', 'say']
+botcommands = ['allo', 'echo', 'clear', 'play', 'autorole', 'leave', 'help', 'pause','resume', 'join', 'stop', 'gn', 'die', 'about', 'queue', 'next', 'load', 'unload', 'say', 'wink', 'DM', 'rank', 'rep_add']
 
 
 currentdir = os.path.dirname(os.path.realpath(__file__))  + '\commands'

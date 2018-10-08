@@ -7,8 +7,16 @@ import discord
 from discord.ext import commands
 import os
 import json
+#import datetime
+
+
 
 class Admin():
+
+
+    #CurTime = datetime.datetime.now()
+
+
     def __init__(self, GoBot):
         self.GoBot = GoBot
 
@@ -64,10 +72,23 @@ class Admin():
         currentdir = os.path.dirname(currentdir)
         currentdir += "\\data\\userExp"
         os.chdir(currentdir)
-        
+
+        """spam_time = 10
+
+        time_now = datetime.datetime.now()
+        time_now_H = int(time_now.strftime('%H'))*60*60
+        time_now_M = int(time_now.strftime('%M'))*60
+        time_now_S = int(time_now.strftime('%S'))
+        CurTime_H = int(self.CurTime.strftime('%H'))*60*60
+        CurTime_M = int(self.CurTime.strftime('%M'))*60
+        CurTime_S = int(self.CurTime.strftime('%S'))
+        print(time_now_S,CurTime_S)
+        if abs( (CurTime_H + CurTime_M + CurTime_S) - (time_now_H + time_now_M + time_now_S) ) < spam_time:
+            return"""
+
         if message.author.id == '487630657028358145': #GO BOT messages ignored
             return
-
+        #self.CurTime = datetime.datetime.now()
         #print('This is not printed', message.author.id)                         #remove this line
         server_name = message.server.name
         file_name = await self.check_server(server_name)
@@ -81,6 +102,7 @@ class Admin():
 
         with open(file_name,'w') as f:
             json.dump(users, f)
+
 
     async def update_data(self, users, user):
         if not user.name in users:
@@ -100,6 +122,53 @@ class Admin():
             await self.GoBot.send_message(channel, '{} has leveled up to level {}'.format(user.mention, lvl_end))
             users[user.name]['level'] = lvl_end
 
+    @commands.command(pass_context = True)
+    async def rank(self, ctx, user: discord.Member):
+        """asldf;asdj"""
+        currentdir = os.path.dirname(os.path.realpath(__file__)) 
+        currentdir = os.path.dirname(currentdir)
+        currentdir = os.path.dirname(currentdir)
+        currentdir += "\\data\\userExp"
+        os.chdir(currentdir)
+
+        user_name = str(user.name) 
+        user_avatar = str(user.avatar_url)
+        server_name = ctx.message.server.name
+        user_xp = {}
+        rank = 0
+
+        file_name = await self.check_server(server_name)
+        with open(file_name,'r') as f:
+            users = json.load(f)
+
+        for user in users:
+            user_xp[user] = users[user]['experience']
+
+        user_rank = sorted(user_xp.items(), key = lambda user_xp: user_xp[1], reverse = True)
+
+        for user in user_rank:
+            rank += 1
+
+            #user[0] returns the name aka. first element of the tuple in a list
+            if user_name == user[0]:
+
+                embed = discord.Embed(
+                    title = user_name + ' #' + str(rank),# + " in " + str(test_user.server.name),
+                    description = 'in ' + str(server_name) ,#+ "'s rank in " + str(test_user.server.name)  ,
+                    #description = 'Experience: ' + str(user[1]) + "\tLevel: "  + str(users[user[0]]['level']) ,
+                    colour = discord.Color.green()
+                )
+                #embed.set_author(name=test_user.name)
+                embed.set_thumbnail(url=user_avatar)
+                embed.add_field(name = 'Level', value = str(users[user[0]]['level']), inline=True)
+                embed.add_field(name = 'Experience', value = str(user[1]), inline=True)
+                embed.set_footer(text = 'Requested by ' + ctx.message.author.name)
+                await self.GoBot.say(embed = embed)
+
+    @commands.command(pass_context = True)
+    async def rep_add(self, ctx):
+        print('test')
+        
 
 def setup(GoBot):
     GoBot.add_cog(Admin(GoBot))

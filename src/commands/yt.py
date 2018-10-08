@@ -36,12 +36,18 @@ class YT():
             #await self.GoBot.say('Duration: {}  | :thumbsup:: {} | :thumbsup:: {}'.format(player.duration, player.likes, player.dislikes)) 
 
     @commands.command(pass_context=True)
-    async def play(self, ctx, url):
+    async def play(self, ctx,* , url):
         channel = ctx.message.author.voice.voice_channel
         server = ctx.message.server
         voice_client = self.GoBot.voice_client_in(server)
         serverID = ctx.message.server.id
-       
+        opts = {
+
+            'default_search': 'auto',
+
+            'quiet': True,
+
+        }
         try:
             if voice_client.is_connected():
                 pass
@@ -52,7 +58,7 @@ class YT():
             await self.GoBot.join_voice_channel(channel)
             voice_client = self.GoBot.voice_client_in(server)
         
-        player = await voice_client.create_ytdl_player(url, after = lambda: self.check_queue(server.id))
+        player = await voice_client.create_ytdl_player(url, ytdl_options=opts, after = lambda: self.check_queue(server.id))
         YT.players[server.id] = player
         player.start()
         await self.GoBot.delete_message(ctx.message)

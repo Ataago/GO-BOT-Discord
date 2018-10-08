@@ -103,6 +103,6 @@ venv.bak/
 # mypy
 .mypy_cache/
 
-#my comments
+#my ignore files
 key.py
-data/
+

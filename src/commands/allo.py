@@ -10,11 +10,7 @@ class Test():
     
     @commands.command(pass_context = True)
     async def allo(self,ctx):
-        if ctx.permissions(administrator):
-            print("is admin")
-            await self.GoBot.say('Allo {}!!!!'.format(ctx.message.author.mention))
-        else:
-            print("not an admin")
+        await self.GoBot.say('Allo {}!!!!'.format(ctx.message.author.mention))
 
 def setup(GoBot):
     GoBot.add_cog(Test(GoBot))

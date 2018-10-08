@@ -6,6 +6,7 @@
 
 import discord
 from discord.ext import commands
+from gobot import Ataago
 
 class Mod():
     def __init__(self, GoBot):
@@ -17,7 +18,16 @@ class Mod():
         channel = ctx.message.channel
         todelete = []
         counter = -1
-    
+
+        author = ctx.message.author
+        owner = await self.GoBot.get_user_info(Ataago.ID)
+        #owner authentication
+        if author == owner:
+            pass
+        else:
+            await self.GoBot.say('you dont have permission at the momment.')
+            return
+
         try:
             async for message in self.GoBot.logs_from(channel, limit=int(amount+1)):
                 todelete.append(message)
