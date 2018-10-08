@@ -166,8 +166,11 @@ class Admin():
                 await self.GoBot.say(embed = embed)
 
     @commands.command(pass_context = True)
-    async def rep_add(self, ctx):
+    async def xp_add(self, ctx, user: discord.Member):
         print('test')
+        print(ctx.message.author)
+        print(user)
+
         
 
 def setup(GoBot):
