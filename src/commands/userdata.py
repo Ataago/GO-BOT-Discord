@@ -9,13 +9,10 @@ import os
 import json
 #import datetime
 
-
+import roles
 
 class Admin():
-
-
     #CurTime = datetime.datetime.now()
-
 
     def __init__(self, GoBot):
         self.GoBot = GoBot
@@ -86,11 +83,19 @@ class Admin():
         if abs( (CurTime_H + CurTime_M + CurTime_S) - (time_now_H + time_now_M + time_now_S) ) < spam_time:
             return"""
 
-        if message.author.id == '487630657028358145': #GO BOT messages ignored
+        if message.author.id == '487630657028358145' or message.author.id == '498773725534093332': #GO BOT messages ignored
             return
         #self.CurTime = datetime.datetime.now()
         #print('This is not printed', message.author.id)                         #remove this line
-        server_name = message.server.name
+        #handling DM to bot
+        try:
+            server_name = message.server.name
+        except:
+            name = await self.GoBot.get_user_info(message.author.id)
+            print("{} texted the bot".format(message.author))
+            await self.GoBot.send_message(name,"Do I look like Google Assistant? \n:joy: :joy: :joy: :joy: :joy: :joy: :joy: ")
+            return
+
         file_name = await self.check_server(server_name)
 
         with open(file_name,'r') as f:
@@ -112,6 +117,8 @@ class Admin():
 
     async def add_experience(self, users, user, exp):
         users[user.name]['experience'] += exp
+        if users[user.name]['experience'] < 0:
+            users[user.name]['experience'] = 0
 
     async def level_up(self, users, user, channel):
         experience = users[user.name]['experience']
@@ -124,7 +131,7 @@ class Admin():
 
     @commands.command(pass_context = True)
     async def rank(self, ctx, user: discord.Member):
-        """asldf;asdj"""
+        """'go rank @name'"""
         currentdir = os.path.dirname(os.path.realpath(__file__)) 
         currentdir = os.path.dirname(currentdir)
         currentdir = os.path.dirname(currentdir)
@@ -166,12 +173,42 @@ class Admin():
                 await self.GoBot.say(embed = embed)
 
     @commands.command(pass_context = True)
-    async def xp_add(self, ctx, user: discord.Member):
-        print('test')
-        print(ctx.message.author)
-        print(user)
+    async def xp(self, ctx, user: discord.Member):
+        """'go xp @name xpValue' xp value could be postive or negative"""
+        currentdir = os.path.dirname(os.path.realpath(__file__)) 
+        currentdir = os.path.dirname(currentdir)
+        currentdir = os.path.dirname(currentdir)
+        currentdir += "\\data\\userExp"
+        os.chdir(currentdir)
 
-        
+        xp_limits = 200
+
+        #check if user has xprole, import roles
+        if not (await roles.Admin.check_role(self, ctx.message, 'adminrole') or await roles.Admin.check_role(self, ctx.message, 'moderole')):
+            await self.GoBot.say("You dont have Permissions")
+            return
+            
+        try:
+            exp = int(ctx.message.content[0:].split(" ")[3])
+            if exp > xp_limits or exp < -xp_limits:
+                await self.GoBot.say("xp range: [-{}, {}]".format(xp_limits,xp_limits))
+                return
+        except:
+            await self.GoBot.say("Enter: 'go xp @name -10' ")
+            return
+
+        server_name = ctx.message.server.name
+        file_name = await self.check_server(server_name)
+
+        with open(file_name,'r') as f:
+            users = json.load(f)
+
+        await self.add_experience(users, user, exp)
+        await self.GoBot.say("{} xp: {}".format(exp,user.name))
+
+        with open(file_name,'w') as f:
+            json.dump(users, f)
+ 
 
 def setup(GoBot):
     GoBot.add_cog(Admin(GoBot))

@@ -6,7 +6,7 @@
 
 import discord
 from discord.ext import commands
-from gobot import Ataago
+import roles
 
 class Mod():
     def __init__(self, GoBot):
@@ -19,13 +19,9 @@ class Mod():
         todelete = []
         counter = -1
 
-        author = ctx.message.author
-        owner = await self.GoBot.get_user_info(Ataago.ID)
-        #owner authentication
-        if author == owner:
-            pass
-        else:
-            await self.GoBot.say('you dont have permission at the momment.')
+        #check if user has xprole, import roles
+        if not (await roles.Admin.check_role(self, ctx.message, 'adminrole') or await roles.Admin.check_role(self, ctx.message, 'moderole')):
+            await self.GoBot.say("You dont have Permissions")
             return
 
         try:

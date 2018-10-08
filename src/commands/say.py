@@ -3,6 +3,8 @@
 
 import discord
 from discord.ext import commands
+from goInfo import Ataago
+import roles
 
 class Admin():
     def __init__(self, GoBot):
@@ -11,6 +13,12 @@ class Admin():
     @commands.command(pass_context = True)
     async def say(self, ctx):
         message = ctx.message
+
+        #check if user has xprole, import roles
+        if not await roles.Admin.check_role(self, ctx.message, 'adminrole'):
+            await self.GoBot.say("You dont have Permissions")
+            return
+
         await self.GoBot.delete_message(message)
         await self.GoBot.say(message.content[7:])
         
