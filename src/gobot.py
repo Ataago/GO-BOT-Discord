@@ -21,7 +21,7 @@ Time_of_disconnection = CurTime
 gotrigger = 'go '
 extensions = []
 botcommands = ['allo', 'echo', 'clear', 'play', 'autorole', 'leave', 'help', 'pause','resume', 'join', 'stop', 'gn', 'die', 'about', 'queue', 'next', 'load', 'unload', 'say', 'wink', 'DM', 'rank', 'xp','modrole','set_admin_role']
-
+status_message = 'Beta Version 3.2'
 
 currentdir = os.path.dirname(os.path.realpath(__file__))  + '\commands'
 for dirpath, dirnames, filenames in os.walk(currentdir):
@@ -48,7 +48,7 @@ async def change_status():
 @GoBot.event
 async def on_ready():
     owner = await GoBot.get_user_info(Ataago.ID)
-    await GoBot.change_presence(game = discord.Game(name = 'Beta Version 3.1'))  #Single status
+    await GoBot.change_presence(game = discord.Game(name = status_message))  #Single status
     print('\nGO BOT is Ready to GO!\n\nRunning on:')
     print('________________________________________________________________________________________________\n')
     [(lambda server: print(" > %s (%s)"%(server.name, server.id))) (server) for server in GoBot.servers]

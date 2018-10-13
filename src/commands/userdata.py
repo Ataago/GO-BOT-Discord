@@ -93,7 +93,7 @@ class Admin():
         except:
             name = await self.GoBot.get_user_info(message.author.id)
             print("{} texted the bot".format(message.author))
-            await self.GoBot.send_message(name,"Do I look like Google Assistant? \n:joy: :joy: :joy: :joy: :joy: :joy: :joy: ")
+            await self.GoBot.send_message(name,"Don't try to make up conversation. \n:joy: :joy: :joy: :joy: :joy: :joy: :joy: ")
             return
 
         file_name = await self.check_server(server_name)

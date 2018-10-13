@@ -61,7 +61,7 @@ class Admin():
         role = discord.utils.get(ctx.message.server.roles, name = role_name)
 
         if role == None:
-            await self.GoBot.say("Enter a valid role existing on this server!!")
+            await self.GoBot.say("Make sure the server contains admin role named as 'admin'")
         else:
             await self.save_file(file_name, role.id, ctx.message.server)
             await self.GoBot.say("Successfully set Admin Role as: {}".format(role.name))
