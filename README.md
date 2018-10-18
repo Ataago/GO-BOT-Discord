@@ -21,13 +21,13 @@ A Discord BOT - GO developed using Python.
 # Intial Bot Setups
 
 - Make an admin role named as 'admin'
-- Enter command "go set_admin_role"
-`<addr>` element here instead.
+- Enter command `go set_admin_role`
+
 # Want to host the BOT?
  
 - Install python on your PC 3.6+.
-- Install Discord API using cmd prompt. #python -m pip install -U discord.py
-- Install Discord voice API using cmd prompt. #python -m pip install -U discord.py[voice]
-- Install youtube_dl using cmd prompt. #python -m pip install -U youtube_dl 
+- Install Discord API using cmd prompt. `python -m pip install -U discord.py`
+- Install Discord voice API using cmd prompt. `python -m pip install -U discord.py[voice]`
+- Install youtube_dl using cmd prompt. `python -m pip install -U youtube_dl` 
 - Download [FFMPEG](https://www.ffmpeg.org/)
 - set the path variable for ffmper/bin in system env.
