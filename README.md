@@ -4,7 +4,7 @@ A Discord BOT - GO developed using Python.
 # Using the GO BOT.
 
  - Make sure you are an Admin in the server.
- - Invite the BOT to your server. https://bit.ly/2CSUKeb
+ - Click [here](https://bit.ly/2CSUKeb) to invite the BOT to your server.
  - Give the BOT Admin privileges.
 
 # Features of the GO BOT
@@ -25,7 +25,7 @@ A Discord BOT - GO developed using Python.
 - Install Discord API using cmd prompt. #python -m pip install -U discord.py
 - Install Discord voice API using cmd prompt. #python -m pip install -U discord.py[voice]
 - Install youtube_dl using cmd prompt. #python -m pip install -U youtube_dl 
-- Download FFMPEG https://www.ffmpeg.org/
+- Download [FFMPEG](https://www.ffmpeg.org/)
 - set the path variable for ffmper/bin in system env.
 
 
@@ -33,5 +33,4 @@ A Discord BOT - GO developed using Python.
 
 - Make a admin role named as 'admin'
 - Enter command "go set_admin_role"
-http://github.com - automatic!
-[GitHub](http://github.com)
+
