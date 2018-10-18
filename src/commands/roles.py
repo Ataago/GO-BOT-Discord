@@ -134,5 +134,24 @@ class Admin():
         await self.save_file(file_name, channel.id, ctx.message.server)
         await self.GoBot.say("Successfully set Bot Log Channel as: {}".format(channel))
 
+    @commands.command(pass_context = True)
+    async def set_suggestions_channel(self, ctx):
+        """Store ID of a text Channel used to give suggestions"""
+        message = ctx.message.content
+        channel_name = message.split(" ")[2]
+        file_name = 'suggestion_channel'
+
+        if not await self.check_role(ctx.message, 'adminrole'):
+            await self.GoBot.say("You don't have Permissions")
+            return
+
+        channel = discord.utils.get(ctx.message.server.channels, name=channel_name, type=discord.ChannelType.text)
+        if not channel:
+            await self.GoBot.say("Enter a valid Text Channel that exists on this server!!")
+            return
+        
+        await self.save_file(file_name, channel.id, ctx.message.server)
+        await self.GoBot.say("Successfully set Bot Log Channel as: {}".format(channel))
+        
 def setup(GoBot):
     GoBot.add_cog(Admin(GoBot))
