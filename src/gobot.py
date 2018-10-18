@@ -21,7 +21,7 @@ Time_of_disconnection = CurTime
 gotrigger = 'go '
 extensions = []
 botcommands = ['allo', 'echo', 'clear', 'play', 'autorole', 'leave', 'help', 'pause','resume', 'join', 'stop', 'gn', 'die', 'about', 'queue', 'next', 'load', 'unload', 'say', 'wink', 'DM', 'rank', 'xp','modrole','set_admin_role','move', 'set_log_channel']
-status_message = 'Beta Version 3.2'
+status_message = 'Beta Version 3.3'
 
 currentdir = os.path.dirname(os.path.realpath(__file__))  + '\commands'
 for dirpath, dirnames, filenames in os.walk(currentdir):

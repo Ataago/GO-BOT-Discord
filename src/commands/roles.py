@@ -127,7 +127,6 @@ class Admin():
             return
 
         channel = discord.utils.get(ctx.message.server.channels, name=channel_name, type=discord.ChannelType.text)
-        print(channel.id)
         if not channel:
             await self.GoBot.say("Enter a valid Text Channel that exists on this server!!")
             return
