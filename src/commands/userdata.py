@@ -129,6 +129,7 @@ class Admin():
             await self.GoBot.send_message(channel, '{} has leveled up to level {}'.format(user.mention, lvl_end))
             users[user.name]['level'] = lvl_end
 
+    
     @commands.command(pass_context = True)
     async def rank(self, ctx, user: discord.Member):
         """'go rank @name'"""
