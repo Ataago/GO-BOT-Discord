@@ -27,3 +27,11 @@ A Discord BOT - GO developed using Python.
 - Install youtube_dl using cmd prompt. #python -m pip install -U youtube_dl 
 - Download FFMPEG https://www.ffmpeg.org/
 - set the path variable for ffmper/bin in system env.
+
+
+# Bot Setup in Discord
+
+- Make a admin role named as 'admin'
+- Enter command "go set_admin_role"
+http://github.com - automatic!
+[GitHub](http://github.com)
