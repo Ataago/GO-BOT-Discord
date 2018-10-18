@@ -4,7 +4,7 @@ A Discord BOT - GO developed using Python.
 # Using the GO BOT.
 
  - Make sure you are an Admin in the server.
- - Invite the BOT to your server. https://bit.ly/2CSUKeb
+ - Click [here](https://bit.ly/2CSUKeb) to invite the BOT to your server.
  - Give the BOT Admin privileges.
 
 # Features of the GO BOT
@@ -18,12 +18,19 @@ A Discord BOT - GO developed using Python.
  - Suggestion commands.
  - Many features upcoming.
 
+# Intial Bot Setups
 
-# Steps to run the GO BOT.
+- Create an Admin role named as `admin`
+- Enter command: `go set_admin_role`
+- Log user Voice Channel logs: `go set_log_channel <log_text_channel_name>`
+- Set Auto role on member join: `go autorole <role_name>`
+- Set Moderation role: `go modrole <role_name>`
+
+# Want to host the BOT?
  
 - Install python on your PC 3.6+.
-- Install Discord API using cmd prompt. #python -m pip install -U discord.py
-- Install Discord voice API using cmd prompt. #python -m pip install -U discord.py[voice]
-- Install youtube_dl using cmd prompt. #python -m pip install -U youtube_dl 
-- Download FFMPEG https://www.ffmpeg.org/
+- Install Discord API using cmd prompt. `python -m pip install -U discord.py`
+- Install Discord voice API using cmd prompt. `python -m pip install -U discord.py[voice]`
+- Install youtube_dl using cmd prompt. `python -m pip install -U youtube_dl` 
+- Download [FFMPEG](https://www.ffmpeg.org/)
 - set the path variable for ffmper/bin in system env.
