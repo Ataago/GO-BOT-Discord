@@ -20,8 +20,9 @@ A Discord BOT - GO developed using Python.
 
 # Intial Bot Setups
 
-- Make an admin role named as 'admin'
+- Create an Admin role named as `admin`
 - Enter command `go set_admin_role`
+>this is test 
 
 # Want to host the BOT?
  
