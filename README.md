@@ -21,8 +21,9 @@ A Discord BOT - GO developed using Python.
 # Intial Bot Setups
 
 - Create an Admin role named as `admin`
-- Enter command: `go set_admin_role`
+- Enter command: `go setup`
 - Log user Voice Channel logs: `go set_log_channel <log_text_channel_name>`
+- Suggestion Channel: `go set_suggestions_channel <channel_name>`
 - Set Auto role on member join: `go autorole <role_name>`
 - Set Moderation role: `go modrole <role_name>`
 
