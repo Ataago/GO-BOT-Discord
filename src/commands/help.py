@@ -45,6 +45,7 @@ class Info():
         embed.add_field(name = 'go modrole <roleName>', value = 'secondary permission', inline=False)
         embed.add_field(name = 'go set_admin_role', value = 'Server owner', inline = False)
         embed.add_field(name = 'go set_log_channel <channel_name>', value = 'Permissions: adminrole', inline = False)
+        embed.add_field(name = 'go set_suggestions_channel <channel_name>', value = 'Permissions: adminrole', inline = False)
         embed.set_footer(text = 'DM Ataago on Discord - #8094')
         await self.GoBot.send_message(author,embed=embed)
         await self.GoBot.say('I have sent you a Personal Message!')
