@@ -4,7 +4,6 @@
 import discord
 from discord.ext import commands
 import os
-import datetime
 import roles
 
 class admin():
@@ -36,12 +35,7 @@ class admin():
             await self.GoBot.say("Enter a suggestion tile and its body ```go suggest suggestion_title | suggestion_body```")
             return
 
-        print(title)
-        print(suggestion)
-
         suggestion_channel = await self.get_file_data(ctx.message.server, 'suggestion_channel')
-        print(suggestion_channel)
-
         if not suggestion_channel:
             await self.GoBot.say("Suggestion channel is not Assigned. Contact your Admin.")
             return

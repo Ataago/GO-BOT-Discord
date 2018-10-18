@@ -53,7 +53,7 @@ class Admin():
         return False
     
     @commands.command(pass_context = True)
-    async def set_admin_role(self, ctx):
+    async def setup(self, ctx):
         """Set Admin Role, Default: admin"""
         role_name = 'admin'
         file_name = 'adminrole'
@@ -64,7 +64,7 @@ class Admin():
             await self.GoBot.say("Make sure the server contains admin role named as 'admin'")
         else:
             await self.save_file(file_name, role.id, ctx.message.server)
-            await self.GoBot.say("Successfully set Admin Role as: {}".format(role.name))
+            await self.GoBot.send_message(ctx.message.author, "GO setup done! \nAdmin Role as: {}\n```go configs```for advanced setup".format(role.name))
 
     @commands.command(pass_context = True)
     async def autorole(self, ctx):
@@ -152,6 +152,6 @@ class Admin():
         
         await self.save_file(file_name, channel.id, ctx.message.server)
         await self.GoBot.say("Successfully set Bot Log Channel as: {}".format(channel))
-        
+
 def setup(GoBot):
     GoBot.add_cog(Admin(GoBot))

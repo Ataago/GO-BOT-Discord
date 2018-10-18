@@ -24,7 +24,20 @@ class Info():
         embed.set_author(name='GO BOT', icon_url ='https://cdn.discordapp.com/attachments/487643988858372096/487967609577537537/GO.png')
         embed.set_thumbnail(url='https://cdn.discordapp.com/attachments/487643988858372096/498871497868443648/Help.png')
     
-        embed.add_field(name = 'FUN', value = 'allo | gn | die ', inline=False)
+        embed.add_field(name = 'Fun Commands', value = 'allo` `gn` `die` `allo` `echo`', inline=False)
+        embed.add_field(name = 'Information commands', value = '`about` `help` `rank @user_name`',inline=False)
+        embed.add_field(name = 'Music commands', value = '`join` `leave` `play <url/name>` `queue <url/name>` `next` `pause` `resume` `stop`', inline = False)
+        embed.add_field(name = 'Action commands', value = '`suggest suggestion_title | suggestion_body` ',inline=False)
+        embed.add_field(name = 'Moderator commands', value = '`clear <number>` `xp @name <expValue>`', inline = False)
+        embed.add_field(name = 'Admin commands', value = '`move to <channel_name>` `configs` ', inline = False)
+        embed.add_field(name = 'GO Bot Setup', value = '`setup` make sure to have an Admin role named `admin`', inline = False)
+    
+
+
+
+  
+ 
+        '''embed.add_field(name = 'FUN', value = '``allo`` `gn` `die` ', inline=False)
         embed.add_field(name = 'go about', value = 'Know about the Developers',inline=False)
         #embed.add_field(name = 'go allo', value = 'Returns Pong!', inline=True)
         embed.add_field(name = 'go echo <statement>', value = 'Echos the statment', inline=False)
@@ -41,11 +54,9 @@ class Info():
         embed.add_field(name = 'go stop', value = 'Stop playing', inline=False)
         embed.add_field(name = 'go xp @name <expValue>', value = 'Increase or Decrease @name xp. Permissions: adminrole, modrole', inline=False)
         embed.add_field(name = 'go move to <channel_name>', value = 'move all users to chanel_name', inline=False)
-        embed.add_field(name = 'go autorole <roleName>', value = 'Auto add role on member join. Permission: admin', inline=False)
-        embed.add_field(name = 'go modrole <roleName>', value = 'secondary permission', inline=False)
-        embed.add_field(name = 'go set_admin_role', value = 'Server owner', inline = False)
-        embed.add_field(name = 'go set_log_channel <channel_name>', value = 'Permissions: adminrole', inline = False)
-        embed.add_field(name = 'go set_suggestions_channel <channel_name>', value = 'Permissions: adminrole', inline = False)
+        embed.add_field(name = 'go set_admin_role', value = 'Create an Admin role named `admin`', inline = False)
+        embed.add_field(name = 'go configs', value = 'Check all the configs. remember to run `go set_admin_role`', inline = False)'''
+
         embed.set_footer(text = 'DM Ataago on Discord - #8094')
         await self.GoBot.send_message(author,embed=embed)
         await self.GoBot.say('I have sent you a Personal Message!')
