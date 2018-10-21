@@ -20,8 +20,8 @@ Time_of_disconnection = CurTime
 
 gotrigger = 'go '
 extensions = []
-botcommands = ['allo', 'echo', 'clear', 'play', 'autorole', 'leave', 'help', 'pause','resume', 'join', 'stop', 'gn', 'die', 'about', 'queue', 'next', 'load', 'unload', 'say', 'wink', 'DM', 'rank', 'xp','modrole','setup','move', 'set_log_channel', 'set_suggestions_channel', 'suggest', 'configs']
-status_message = 'Beta Version 3.7'
+botcommands = ['allo', 'echo', 'clear', 'play', 'autorole', 'leave', 'help', 'pause','resume', 'join', 'stop', 'gn', 'die', 'about', 'queue', 'next', 'load', 'unload', 'say', 'wink', 'DM', 'rank', 'xp','modrole','setup','move', 'set_log_channel', 'set_suggestions_channel', 'suggest', 'configs', 'vote']
+status_message = 'Beta Version 3.8'
 
 currentdir = os.path.dirname(os.path.realpath(__file__))  + '\commands'
 for dirpath, dirnames, filenames in os.walk(currentdir):
@@ -69,7 +69,7 @@ async def on_message(message):
 
     print('{}: {} in {}-{}:\t{}'.format(CurTime.strftime("%Y-%m-%d %H:%M:%S"), message.author, message.channel, message.server, message.content))
     if invoke not in botcommands and prefix == gotrigger :
-        await GoBot.send_message(message.channel,  embed = discord.Embed(color = discord.Color.red(), description = ("'%s' is not a GO command! \n\nEnter 'go help' " % invoke)))
+        await GoBot.send_message(message.channel,  embed = discord.Embed(color = discord.Color.red(), description = ("'%s' is not a GO command! \n\nEnter `'go help'` " % invoke)))
         return
     await GoBot.process_commands(message)
 
@@ -88,8 +88,11 @@ if __name__ == '__main__':
 
         while True:
             try:
+                print('loop.run_untill_complete')
                 GoBot.loop.run_until_complete(GoBot.start(TOKEN))
+                print('loop.run_until_complete over')
             except BaseException:
+                print(BaseException)
                 time_now = datetime.datetime.now()
                 time_now_H = int(time_now.strftime('%H'))*60*60
                 time_now_M = int(time_now.strftime('%M'))*60

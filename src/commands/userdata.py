@@ -185,7 +185,7 @@ class Admin():
         xp_limits = 200
 
         #check if user has xprole, import roles
-        if not (await roles.Admin.check_role(self, ctx.message, 'adminrole') or await roles.Admin.check_role(self, ctx.message, 'moderole')):
+        if not (await roles.Admin.check_role(self, ctx.message, 'adminrole') or await roles.Admin.check_role(self, ctx.message, 'modrole')):
             await self.GoBot.say("You dont have Permissions")
             return
             

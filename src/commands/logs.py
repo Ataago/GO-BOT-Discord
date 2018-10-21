@@ -29,13 +29,15 @@ class admin():
     async def on_voice_state_update(self, before, after):
         CurTime = datetime.datetime.now()
         log_channel = await self.get_file_data(before.server, 'log_channel')
+        if not log_channel:
+            return  #server doesnt have log channel assigned
         
         try:
             before_channel = before.voice_channel.name
             after_channel = after.voice_channel.name
             #print('{} has changed from {} to {}'.format(before.name, before_channel, after_channel))
             embed = discord.Embed(
-                    title = ':arrows_counterclockwise:  ' + before.name  ,
+                    title = '🔄 ' + before.name  ,
                     description = 'switched from :loud_sound:**' + before_channel + '** to  :loud_sound:**' + after_channel + '**',
                     colour = discord.Color.orange()
                 )
@@ -50,7 +52,7 @@ class admin():
             after_channel = after.voice_channel.name
             #print('{} has joinned {}'.format(after.name, after_channel))
             embed = discord.Embed(
-                    title = ':arrow_right:  ' + after.name ,
+                    title = '✔️  ' + after.name ,
                     description = 'joined :loud_sound:**' + after_channel + '**',
                     colour = discord.Color.green()
                 )
@@ -63,7 +65,7 @@ class admin():
             before_channel = before.voice_channel.name
             #print('{} has left {}'.format(before.name, before_channel))
             embed = discord.Embed(
-                    title = ':arrow_left:  ' + after.name ,
+                    title = '❌  ' + after.name ,
                     description = 'left :loud_sound: **' + before_channel + '**',
                     colour = discord.Color.red()
                 )
