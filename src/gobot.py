@@ -84,12 +84,13 @@ if __name__ == '__main__':
 
     try:
         TOKEN = key.TOKEN
-        print('\nIntializing Go...\n')
+        print('\nIntializing GO [{}]...\n'.format(status_message))
 
         while True:
             try:
-                print('loop.run_untill_complete')
-                GoBot.loop.run_until_complete(GoBot.start(TOKEN))
+                print('Before run... Debug')
+                #GoBot.loop.run_until_complete(GoBot.start(TOKEN))
+                GoBot.run(TOKEN)
                 print('loop.run_until_complete over')
             except BaseException:
                 print(BaseException)

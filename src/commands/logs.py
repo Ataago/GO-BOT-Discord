@@ -38,7 +38,7 @@ class admin():
             #print('{} has changed from {} to {}'.format(before.name, before_channel, after_channel))
             embed = discord.Embed(
                     title = '🔄 ' + before.name  ,
-                    description = 'switched from :loud_sound:**' + before_channel + '** to  :loud_sound:**' + after_channel + '**',
+                    description = 'switched from 🔊 **' + before_channel + '** to  🔊 **' + after_channel + '**',
                     colour = discord.Color.orange()
                 )
             embed.set_footer(text = 'Voice switch: ' + CurTime.strftime("%I:%M:%S %p") + ' IST')
@@ -53,7 +53,7 @@ class admin():
             #print('{} has joinned {}'.format(after.name, after_channel))
             embed = discord.Embed(
                     title = '✔️  ' + after.name ,
-                    description = 'joined :loud_sound:**' + after_channel + '**',
+                    description = 'joined 🔊 **' + after_channel + '**',
                     colour = discord.Color.green()
                 )
             embed.set_footer(text = 'Voice join: ' + CurTime.strftime("%I:%M:%S %p") + " IST ")
@@ -66,7 +66,7 @@ class admin():
             #print('{} has left {}'.format(before.name, before_channel))
             embed = discord.Embed(
                     title = '❌  ' + after.name ,
-                    description = 'left :loud_sound: **' + before_channel + '**',
+                    description = 'left 🔊  **' + before_channel + '**',
                     colour = discord.Color.red()
                 )
             embed.set_footer(text = 'Voice leave: ' + CurTime.strftime("%I:%M:%S %p") + ' IST')
