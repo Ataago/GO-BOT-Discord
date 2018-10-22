@@ -21,7 +21,7 @@ Time_of_disconnection = CurTime
 gotrigger = 'go '
 extensions = []
 botcommands = ['allo', 'echo', 'clear', 'play', 'autorole', 'leave', 'help', 'pause','resume', 'join', 'stop', 'gn', 'die', 'about', 'queue', 'next', 'load', 'unload', 'say', 'wink', 'DM', 'rank', 'xp','modrole','setup','move', 'set_log_channel', 'set_suggestions_channel', 'suggest', 'configs', 'vote']
-status_message = 'Beta Version 3.8'
+status_message = 'Beta Version 3.9'
 
 currentdir = os.path.dirname(os.path.realpath(__file__))  + '\commands'
 for dirpath, dirnames, filenames in os.walk(currentdir):
@@ -88,12 +88,23 @@ if __name__ == '__main__':
 
         while True:
             try:
-                print('Before run... Debug')
+                print('Starting GO...')
                 #GoBot.loop.run_until_complete(GoBot.start(TOKEN))
                 GoBot.run(TOKEN)
-                print('loop.run_until_complete over')
-            except BaseException:
-                print(BaseException)
+                print('GO terminated for unkown reason')
+
+            except error:
+                print(error)
+
+                #kill bot
+                try:
+                    print('Trying to Logout')
+                    GoBot.logout()
+                    print('Bot logged out sucessfully!')
+                except error:
+                    print('Couldnt logout the Bot due to:')
+                    print(error)
+
                 time_now = datetime.datetime.now()
                 time_now_H = int(time_now.strftime('%H'))*60*60
                 time_now_M = int(time_now.strftime('%M'))*60
