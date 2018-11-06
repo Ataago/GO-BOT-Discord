@@ -20,10 +20,11 @@ Time_of_disconnection = CurTime
 
 gotrigger = 'go '
 extensions = []
-botcommands = ['allo', 'echo', 'clear', 'play', 'autorole', 'leave', 'help', 'pause','resume', 'join', 'stop', 'gn', 'die', 'about', 'queue', 'next', 'load', 'unload', 'say', 'wink', 'DM', 'rank', 'xp','modrole','setup','move', 'set_log_channel', 'set_suggestions_channel', 'suggest', 'configs', 'vote']
-status_message = 'Beta Version 3.9'
+botcommands = ['allo', 'echo', 'clear', 'play', 'autorole', 'leave', 'help', 'pause','resume', 'join', 'stop', 'gn', 'die', 'about', 'queue', 'next', 'load', 'unload', 'say', 'wink', 'DM', 'rank', 'xp','modrole','setup','move', 'set_log_channel', 'set_suggestions_channel', 'suggest', 'configs', 'vote', 'logout']
+status_message = 'Beta Version 4.0'
+presence_cycle_time = 2
 
-currentdir = os.path.dirname(os.path.realpath(__file__))  + '\commands'
+currentdir = os.path.dirname(os.path.realpath(__file__))  + '\\commands'
 for dirpath, dirnames, filenames in os.walk(currentdir):
     if dirpath == currentdir:
         for file in filenames:
@@ -42,7 +43,7 @@ async def change_status():
     while not GoBot.is_closed:
         current_status = next(msgs)
         await GoBot.change_presence(game=discord.Game(name = current_status))
-        await asyncio.sleep(2)
+        await asyncio.sleep(presence_cycle_time)
 
 #on_ready
 @GoBot.event
@@ -54,13 +55,7 @@ async def on_ready():
     [(lambda server: print(" > %s (%s)"%(server.name, server.id))) (server) for server in GoBot.servers]
     print('________________________________________________________________________________________________\n')
     await GoBot.send_message(owner,'GO is Online now. \nBOT Was offline since: %s' % Time_of_disconnection.strftime("%d-%b-%Y  %I:%M:%S %p") )
-
-@GoBot.command
-async def logout():
-    await GoBot.logout()
-    print("Logout")
-    input("hit enter to exit...")
-
+    
 @GoBot.event
 async def on_message(message):
     CurTime = datetime.datetime.now()
@@ -85,16 +80,21 @@ if __name__ == '__main__':
     try:
         TOKEN = key.TOKEN
         print('\nIntializing GO [{}]...\n'.format(status_message))
+        print('Starting GO...')
+        GoBot.run(TOKEN)
+        print('GO terminated for unkown reason')
+    except Exception:
+        print('\nFollowing Exception occured while trying to Run GO:')
 
-        while True:
+        """while True:
             try:
                 print('Starting GO...')
                 #GoBot.loop.run_until_complete(GoBot.start(TOKEN))
                 GoBot.run(TOKEN)
                 print('GO terminated for unkown reason')
 
-            except error:
-                print(error)
+            except RuntimeError:
+                print(RuntimeError)
 
                 #kill bot
                 try:
@@ -116,7 +116,7 @@ if __name__ == '__main__':
                     Time_of_disconnection = datetime.datetime.now()
                 CurTime = datetime.datetime.now()
                 print('*********************************** {} No Network connection, Trying to Reconnect {} ***********************************'.format(CurTime.strftime('%H:%M:%S'), Time_of_disconnection.strftime('%H:%M:%S')))
-                time.sleep(5)
+                time.sleep(5)"""
         #GoBot.loop.create_task(change_status()) #change status with status list
         #GoBot.run(TOKEN)    #run the bot
 

@@ -29,6 +29,10 @@ class admin():
     async def on_voice_state_update(self, before, after):
         CurTime = datetime.datetime.now()
         log_channel = await self.get_file_data(before.server, 'log_channel')
+
+        if before.voice_channel.name == after.voice_channel.name:
+            return
+            
         if not log_channel:
             return  #server doesnt have log channel assigned
         
