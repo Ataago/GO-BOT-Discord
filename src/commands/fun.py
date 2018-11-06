@@ -21,7 +21,13 @@ class Fun():
     async def die(self,ctx):
         try:
             tag = ctx.message.content[0:].split(" ")[2]
-            await self.GoBot.say("Merryweather strike team is dispatched for {}!  :gun: :bomb:".format(tag))
+            print(tag)
+            if tag == '<@260089708300861452>':
+                await self.GoBot.say('I am loyal unlike you.')
+            elif  tag == '<@487630657028358145>':
+                await self.GoBot.say("LOL, I am immortal {}!".format(ctx.message.author.mention))
+            else:
+                await self.GoBot.say("Merryweather strike team is dispatched for {}!  :gun: :bomb:".format(tag))
 
         except:
             await self.GoBot.say("LOL, I am immortal {}!".format(ctx.message.author.mention))

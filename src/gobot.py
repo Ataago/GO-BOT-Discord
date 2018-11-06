@@ -21,7 +21,7 @@ Time_of_disconnection = CurTime
 gotrigger = 'go '
 extensions = []
 botcommands = ['allo', 'echo', 'clear', 'play', 'autorole', 'leave', 'help', 'pause','resume', 'join', 'stop', 'gn', 'die', 'about', 'queue', 'next', 'load', 'unload', 'say', 'wink', 'DM', 'rank', 'xp','modrole','setup','move', 'set_log_channel', 'set_suggestions_channel', 'suggest', 'configs', 'vote', 'logout']
-status_message = 'Beta Version 4.0'
+status_message = 'Beta Version 4.0.1'
 presence_cycle_time = 2
 
 currentdir = os.path.dirname(os.path.realpath(__file__))  + '\\commands'
@@ -76,7 +76,6 @@ if __name__ == '__main__':
             GoBot.unload_extension(extension)
             print('\nCould not load: ',extension)
             print(error)
-
     try:
         TOKEN = key.TOKEN
         print('\nIntializing GO [{}]...\n'.format(status_message))
