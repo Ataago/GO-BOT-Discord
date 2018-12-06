@@ -38,6 +38,8 @@ class Fun():
 
     @commands.command(pass_context = True)
     async def DM(self, ctx):
+        tag = ctx.message.content[0:].split(" ")[2]
+        print(tag)
         reciever = '260089708300861452'
         name = self.GoBot.get_user_info(reciever)
         print(name)

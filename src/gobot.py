@@ -21,7 +21,7 @@ Time_of_disconnection = CurTime
 gotrigger = 'go '
 extensions = []
 botcommands = ['allo', 'echo', 'clear', 'play', 'autorole', 'leave', 'help', 'pause','resume', 'join', 'stop', 'gn', 'die', 'about', 'queue', 'next', 'load', 'unload', 'say', 'wink', 'DM', 'rank', 'xp','modrole','setup','move', 'set_log_channel', 'set_suggestions_channel', 'suggest', 'configs', 'vote', 'logout']
-status_message = 'Beta Version 4.0.1'
+status_message = 'Beta Version 4.0.2'
 presence_cycle_time = 2
 
 currentdir = os.path.dirname(os.path.realpath(__file__))  + '\\commands'
@@ -59,10 +59,11 @@ async def on_ready():
 @GoBot.event
 async def on_message(message):
     CurTime = datetime.datetime.now()
-    prefix = message.content[0:3]
-    invoke = message.content[3:].split(" ")[0]
+    prefix = message.content.split(" ")[0]
+    invoke = message.content.split(" ")[1]
 
     print('{}: {} in {}-{}:\t{}'.format(CurTime.strftime("%Y-%m-%d %H:%M:%S"), message.author, message.channel, message.server, message.content))
+    message.content = prefix.lower() + ' ' + invoke.lower() + message.content[(len(prefix) + len(invoke) + 1) :]
     if invoke not in botcommands and prefix == gotrigger :
         await GoBot.send_message(message.channel,  embed = discord.Embed(color = discord.Color.red(), description = ("'%s' is not a GO command! \n\nEnter `'go help'` " % invoke)))
         return
@@ -72,7 +73,7 @@ if __name__ == '__main__':
     for extension in extensions:
         try:
             GoBot.load_extension(extension)
-        except Exception as error:
+        except Exception as error: 
             GoBot.unload_extension(extension)
             print('\nCould not load: ',extension)
             print(error)

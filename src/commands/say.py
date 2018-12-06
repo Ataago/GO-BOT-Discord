@@ -13,6 +13,10 @@ class Admin():
     @commands.command(pass_context = True)
     async def say(self, ctx):
         message = ctx.message
+        prefix = message.content.split(" ")[0]
+        invoke = message.content.split(" ")[1]
+
+        messageStartsFrom = len(prefix) + len(invoke) + 1
 
         #check if user has xprole, import roles
         if not await roles.Admin.check_role(self, ctx.message, 'adminrole'):
@@ -20,7 +24,7 @@ class Admin():
             return
 
         await self.GoBot.delete_message(message)
-        await self.GoBot.say(message.content[7:])
+        await self.GoBot.say(message.content[messageStartsFrom : ])
         
 def setup(GoBot):
     GoBot.add_cog(Admin(GoBot))
