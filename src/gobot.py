@@ -20,8 +20,8 @@ Time_of_disconnection = CurTime
 
 gotrigger = 'go '
 extensions = []
-botcommands = ['allo', 'echo', 'clear', 'play', 'autorole', 'leave', 'help', 'pause','resume', 'join', 'stop', 'gn', 'die', 'about', 'queue', 'next', 'load', 'unload', 'say', 'wink', 'DM', 'rank', 'xp','modrole','setup','move', 'set_log_channel', 'set_suggestions_channel', 'suggest', 'configs', 'vote', 'logout']
-status_message = 'Beta Version 4.0.2'
+botcommands = ['allo', 'echo', 'clear', 'play', 'autorole', 'leave', 'help', 'pause','resume', 'join', 'stop', 'gn', 'die', 'about', 'queue', 'next', 'load', 'unload', 'say', 'wink', 'DM', 'rank', 'xp','modrole','setup','move', 'set_log_channel', 'set_suggestions_channel', 'suggest', 'configs', 'vote', 'logout', 'gm']
+status_message = 'Beta Version 4.0.3'
 presence_cycle_time = 2
 
 currentdir = os.path.dirname(os.path.realpath(__file__))  + '\\commands'
@@ -60,13 +60,22 @@ async def on_ready():
 async def on_message(message):
     CurTime = datetime.datetime.now()
     prefix = message.content.split(" ")[0]
-    invoke = message.content.split(" ")[1]
+
+    if prefix.lower() + ' ' != gotrigger:
+        return
+
+    try:
+        invoke = message.content.split(" ")[1]
+    except:
+        await GoBot.send_message(message.channel,  embed = discord.Embed(color = discord.Color.red(), description = ("Type in a GO command! \n\nEnter `'go help'` ")))
 
     print('{}: {} in {}-{}:\t{}'.format(CurTime.strftime("%Y-%m-%d %H:%M:%S"), message.author, message.channel, message.server, message.content))
     message.content = prefix.lower() + ' ' + invoke.lower() + message.content[(len(prefix) + len(invoke) + 1) :]
-    if invoke not in botcommands and prefix == gotrigger :
+
+    if invoke not in botcommands and prefix.lower() + ' ' == gotrigger:
         await GoBot.send_message(message.channel,  embed = discord.Embed(color = discord.Color.red(), description = ("'%s' is not a GO command! \n\nEnter `'go help'` " % invoke)))
         return
+
     await GoBot.process_commands(message)
 
 if __name__ == '__main__':

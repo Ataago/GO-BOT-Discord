@@ -24,7 +24,7 @@ class Info():
         embed.set_author(name='GO BOT', icon_url ='https://cdn.discordapp.com/attachments/487643988858372096/487967609577537537/GO.png')
         embed.set_thumbnail(url='https://cdn.discordapp.com/attachments/487643988858372096/498871497868443648/Help.png')
     
-        embed.add_field(name = 'Fun Commands', value = '`allo` `gn` `die` `allo` `echo`', inline=False)
+        embed.add_field(name = 'Fun Commands', value = '`allo` `gn` `gm` `die` `allo` `echo`', inline=False)
         embed.add_field(name = 'Information commands', value = '`about` `help` `rank @user_name`',inline=False)
         embed.add_field(name = 'Music commands', value = '`join` `leave` `play <url/name>` `queue <url/name>` `next` `pause` `resume` `stop`', inline = False)
         embed.add_field(name = 'Action commands', value = '`vote <option_no>` `suggest suggestion_title | suggestion_body` ',inline=False)

@@ -18,6 +18,16 @@ class Fun():
             await self.GoBot.say("See you again {}!".format(ctx.message.author.mention))
 
     @commands.command(pass_context = True)
+    async def gm(self,ctx):
+        try:
+            tag = ctx.message.content[0:].split(" ")[2]
+            await self.GoBot.say("Good Morning {}!".format(tag))
+
+        except:
+            await self.GoBot.say("You are alive {} ? \n Good Morning anyways ☀".format(ctx.message.author.mention))
+    
+
+    @commands.command(pass_context = True)
     async def die(self,ctx):
         try:
             tag = ctx.message.content[0:].split(" ")[2]
